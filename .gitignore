@@ -2,8 +2,8 @@ spring-hibernate4
 TestSpringMVC01
 .DS_Store
 .metadata
-*.metadata*
 *RemoteSystemsTempFiles
+RemoteSystemsTempFiles/
 *Servers
 *target*
 *.jar
