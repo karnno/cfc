@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CFC</title>
+<audio id="zik" src="zik/zik.ogg" type="audio/ogg"></audio>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/Splice.js"></script>
+<script type="text/javascript" src="js/Cards.js"></script>
+<script type="text/javascript" src="js/decksAndPlayers.js"></script>
+<script type="text/javascript" src="js/playInfosArea.js"></script>
+<script type="text/javascript" src="js/playArea.js"></script>
+<script type="text/javascript" src="js/KarateGame.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<style>
+	.row {
+		float: left;
+		border: 1px solid black;
+		width: 900px;
+		overflow: auto;
+	}
+	.separatorCell {
+		float: left;
+		 
+		width: 10px; 
+		height: 400px;
+	}
+	.cell {
+		float: left;
+		 
+		width: 430px; 
+		height: 400px;
+	}
+</style>
+<body>
+	<div class="row">
+		<div id='player1divId' class="cell">
+
+			<div id="ply1_info" style="font-weight:bold">.</div>
+			<div style="border: green 2px solid;height : 60px">
+				<div style="border: none; width:45px; float:left; font-size:13px">Energy:<br/>Motiv:<br/>Credib:</div>
+				<div id="ply1_info_bars" style="border: none; width:20px; float:left; font-size:13px">E<br/>M<br/>C</div>
+				<div style="border: none; float:left"><canvas style="border: none" id="ply1InfosCanvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre � jour pour jouer.</canvas>
+				</div>
+			</div>
+			<canvas style="border: blue 1px solid" id="ply1Canvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre � jour pour jouer.</canvas>
+			<div>Name: <span style="font-weight:bold" id="card_ply1_name"></span>
+			</div>
+			<div>Energy: <span id="card_ply1_energy"></span><br />
+			</div>
+			<div>Motivation: <span id="card_ply1_motivation"></span><br />
+			</div>
+			<div>Credibility: <span id="card_ply1_credibility"></span><br />
+			</div>
+			<div>
+				<a id="ply1_playPotentialCardOnOpponent"></a><a
+					id="ply1_playPotentialCardOnSelf"></a>
+			</div>
+		</div>
+
+		<div id='playersSeparator' class="separatorCell">&nbsp;</div>
+		
+		<div id='player1divId' class="cell">
+			<div id="ply2_info" style="font-weight:bold">.</div>
+			<div style="border: green 2px solid;height : 60px">
+				<div style="border: none; width:45px; float:left; font-size:13px">Energy:<br/>Motiv:<br/>Credib:<br/></div>
+				<div id="ply2_info_bars" style="border: none; width:20px; float:left; font-size:13px">E<br/>M<br/>C</div>
+				<div style="border: none; float:left"><canvas style="border: none" id="ply2InfosCanvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre � jour pour jouer.</canvas>
+				</div>
+			</div>
+			<canvas style="border: red 1px solid" id="ply2Canvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre � jour pour jouer.</canvas>
+			<div>Name: <span style="font-weight:bold" id="card_ply2_name"></span><br/>
+			</div>
+			<div>Energy: <span id="card_ply2_energy"></span><br />
+			</div>
+			<div>Motivation: <span id="card_ply2_motivation"></span><br />
+			</div>
+			<div>Credibility: <span id="card_ply2_credibility"></span><br />
+			</div>
+			<div>
+				<a id="ply2_playPotentialCardOnOpponent"></a><a	id="ply2_playPotentialCardOnSelf"></a>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

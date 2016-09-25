@@ -1,0 +1,122 @@
+package com.company.my.card;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.company.my.deck.Deck;
+
+@Entity
+@Table(name = "CARDS")
+public class Card {
+
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
+	long idCard;
+
+	@Column(name = "NAMECARD")
+	String nameCard;
+
+	@Column(name = "ENERGY")
+	int energy;
+	
+	@Column(name = "MOTIVATION")
+	int motivation;
+	
+	@Column(name = "CREDIBILITY")
+	int credibility;
+	
+	/*
+	 * @ManyToOne annotation defines a single-valued association to another
+	 * entity class that has many-to-one multiplicity. It is not normally
+	 * necessary to specify the target entity explicitly since it can usually be
+	 * inferred from the type of the object being referenced.
+	 * 
+	 * @JoinColumn indicate the owning side of the relationship, it is
+	 * responsible for updating the database column. It will create the
+	 * DECK_ID column on the CARD table
+	 * 
+	 * 
+	 * NB : To properly map a unidirectional One-to-Many relationship, you only
+	 * need to use the @ManyToOne annotation !!
+	 */
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "DECK_ID")
+	private Deck deck;
+
+	public Card() {
+
+	}
+
+	public Card(String name, Deck deck) {
+		this.nameCard = name;
+		this.deck = deck;
+	}
+
+	public long getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(long idCard) {
+		this.idCard = idCard;
+	}
+
+	public String getNameCard() {
+		return nameCard;
+	}
+
+	public void setNameCard(final String name) {
+		this.nameCard = name;
+	}
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+	}
+
+	public int getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+
+	public int getMotivation() {
+		return motivation;
+	}
+
+	public void setMotivation(int motivation) {
+		this.motivation = motivation;
+	}
+
+	public int getCredibility() {
+		return credibility;
+	}
+
+	public void setCredibility(int credibility) {
+		this.credibility = credibility;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sBuilder = new StringBuilder();
+		sBuilder
+			.append("Card name [").append(this.getNameCard()).append("] ")
+			.append(" ENRGY [").append(this.getEnergy()).append("] ")
+			.append(" MOTIVATION [").append(this.getMotivation()).append("] ")
+			.append(" CREDIBILITY [").append(this.getCredibility()).append("] ")
+			;
+
+		return sBuilder.toString();
+	}
+}

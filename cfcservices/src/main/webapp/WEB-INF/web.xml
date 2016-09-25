@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+
+	<!-- 
+	
+			SERVLET CONTEXT 
+			-----------------------------------------------------------------------------------------
+	-->	
+	
+	
+	
+	
+	<!--  Defined the dispatcher servlet to catch servlet calls to spring controller -->
+	<servlet>
+        <servlet-name>servicescontext</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- Following init-param is optional. 
+        		by default, it will look into WEB-INF/servicescontext-servlet.xml
+        		interesting if you want to put it elsewhere 
+         -->
+         <!-- 
+         <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/servicescontext-servlet.xml</param-value>
+        </init-param>
+        -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>servicescontext</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+	
+	
+	
+	
+	<!-- 
+	
+			WEB APPLICATION CONTEXT
+			-----------------------------------------------------------------------------------------
+	 -->
+	
+	
+	
+	
+	<!-- Normal web context loader -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- I put my spring context config file in src/main/resources instead of WEB-INF, need to specify its location -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:cfcservices-context.xml</param-value>
+	</context-param>
+</web-app>

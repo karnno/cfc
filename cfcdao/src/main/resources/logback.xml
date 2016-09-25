@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LOGBACK : slf4j log file configuration -->
+<configuration debug="false">
+
+	<!-- CONSOLE -->
+ 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+ 		<layout class="ch.qos.logback.classic.PatternLayout"> 
+ 			<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n 
+ 			</Pattern> 
+ 		</layout> 
+ 	</appender>
+
+	 
+
+<!-- 	<logger name="lu.intrasoft.xtnet.services.remote.aspects" level="TRACE"/> -->
+	<logger name="com.company.my" level="DEBUG"/>
+	<logger name="org.springframework.core" level="DEBUG"/>
+	<logger name="org.springframework.core.env" level="DEBUG"/>
+	
+<!-- 	
+	<logger name="org.hibernate" level="INFO"/> 
+	<logger name="org.hibernate.type" level="TRACE"/> 
+-->
+
+	<root level="DEBUG">
+<!-- 		<appender-ref ref="STDOUT" /> -->
+		<appender-ref ref="STDOUT"/>
+	</root>
+</configuration>
