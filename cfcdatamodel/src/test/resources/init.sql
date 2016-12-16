@@ -1,8 +1,8 @@
-drop table GAMEPARTICIPATIONS;
-drop table CARDS;
-drop table DECKS;
-drop table GAMES;
-drop table PLAYERS;
+--drop table GAMEPARTICIPATIONS;
+--drop table CARDS;
+--drop table DECKS;
+--drop table GAMES;
+--drop table PLAYERS;
 
 drop sequence if exists CFC_PLAYERS_SEQ;
 drop sequence if exists CFC_GAMES_SEQ;

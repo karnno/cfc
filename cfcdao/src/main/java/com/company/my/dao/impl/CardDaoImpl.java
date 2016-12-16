@@ -2,27 +2,18 @@ package com.company.my.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.company.my.card.Card;
 import com.company.my.dao.CardDao;
+import com.company.my.hibernate.util.HibernateDao;
 
 @Repository("cardDao")
-public class CardDaoImpl implements CardDao {
-
-	@Autowired
-	private SessionFactory sessionFactory;
-
-	private Session getCurrentSession() {
-		return this.sessionFactory.getCurrentSession();
-	}
+public class CardDaoImpl extends HibernateDao implements CardDao {
 
 	public void save(Card card) {
-		this.getCurrentSession().saveOrUpdate(card);
+		this.getCurrentSession().save(card);
 	}
 
 	/**

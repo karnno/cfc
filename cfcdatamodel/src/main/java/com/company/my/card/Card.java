@@ -4,9 +4,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.company.my.deck.Deck;
@@ -15,12 +17,16 @@ import com.company.my.deck.Deck;
 @Table(name = "CARDS")
 public class Card {
 
-	@Id
-	@GeneratedValue
+	@SequenceGenerator(
+	        name="CFC_CARDS_SEQUENCE_GENERATOR",
+	        sequenceName="CFC_CARDS_SEQ"
+	    )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_CARDS_SEQUENCE_GENERATOR")
+	@Id 
 	@Column(name = "ID")
 	long idCard;
 
-	@Column(name = "NAMECARD")
+	@Column(name = "NAME")
 	String nameCard;
 
 	@Column(name = "ENERGY")
@@ -107,12 +113,19 @@ public class Card {
 		this.credibility = credibility;
 	}
 
+	public void setEffectValues(int energy, int motivation, int credibility){
+		this.setEnergy(energy);
+		this.setMotivation(motivation);
+		this.setCredibility(credibility);
+	}
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder sBuilder = new StringBuilder();
 		sBuilder
 			.append("Card name [").append(this.getNameCard()).append("] ")
-			.append(" ENRGY [").append(this.getEnergy()).append("] ")
+			.append(" ENERGY [").append(this.getEnergy()).append("] ")
 			.append(" MOTIVATION [").append(this.getMotivation()).append("] ")
 			.append(" CREDIBILITY [").append(this.getCredibility()).append("] ")
 			;

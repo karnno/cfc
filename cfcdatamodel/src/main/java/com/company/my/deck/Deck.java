@@ -8,10 +8,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.company.my.bom.Player;
 import com.company.my.card.Card;
 
 
@@ -28,14 +33,22 @@ import com.company.my.card.Card;
 @Table(name = "DECKS")
 public class Deck {
 
+	@SequenceGenerator(
+	        name="CFC_DECKS_SEQUENCE_GENERATOR",
+	        sequenceName="CFC_DECKS_SEQ",
+	        allocationSize=1
+	    )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_DECKS_SEQUENCE_GENERATOR")
 	@Id
-	@GeneratedValue
 	@Column(name = "ID")
 	private long id;
 
-	@Column(name = "name")
+	@Column(name = "NAME")
 	private String deckName;
 
+	@ManyToOne
+	@JoinColumn(name = "PLAYER_ID")
+	private Player player;
 	/*
 	 * Uncomment the annotation for BI-Directional relationship !
 	 * 
@@ -52,7 +65,6 @@ public class Deck {
 	/* */
 	private List<Card> deckCards = new ArrayList<Card>();
 
-	/* */
 
 	public Deck() {
 		this.deckName = "deckName" + System.currentTimeMillis();
@@ -70,6 +82,14 @@ public class Deck {
 
 	public void setDeckName(String deckName) {
 		this.deckName = deckName;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	@Override

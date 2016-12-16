@@ -2,23 +2,16 @@ package com.company.my.dao.impl;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.company.my.bom.Player;
 import com.company.my.dao.PlayerDao;
+import com.company.my.hibernate.util.HibernateDao;
 
 @Repository("playerDao")
-public class PlayerDaoImpl implements PlayerDao {
+public class PlayerDaoImpl extends HibernateDao implements PlayerDao {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	private Session getCurrentSession() {
-		return this.sessionFactory.getCurrentSession();
-	}
 	
 	public void save(Player player) {
 		this.getCurrentSession().saveOrUpdate(player);

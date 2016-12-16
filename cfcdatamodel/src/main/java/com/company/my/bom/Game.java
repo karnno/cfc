@@ -9,9 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /*
@@ -30,8 +32,12 @@ public class Game implements Serializable{
 
 	public static final String GAMES = "GAMES";
 	
+	@SequenceGenerator(
+	        name="CFC_GAMES_SEQUENCE_GENERATOR",
+	        sequenceName="CFC_GAMES_SEQ"
+	    )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_GAMES_SEQUENCE_GENERATOR")
 	@Id
-	@GeneratedValue
 	@Column(name = "ID")
 	long id;
 	

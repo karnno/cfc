@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.company.my.deck.Deck;
@@ -31,8 +33,12 @@ public class Player implements Serializable{
 
 	public static final String PLAYERS= "PLAYERS";
 	
+	@SequenceGenerator(
+	        name="CFC_PLAYERS_SEQUENCE_GENERATOR",
+	        sequenceName="CFC_PLAYERS_SEQ"
+	    )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_PLAYERS_SEQUENCE_GENERATOR")
 	@Id
-	@GeneratedValue
 	@Column(name = "ID")
 	long id;
 	

@@ -55,6 +55,9 @@
 	<!-- ... it needs a "target" to work on, here it is : -->
 	<context:component-scan base-package="com.company.my" />
 
-
+	<bean id="hibernateDao"
+		class="com.company.my.hibernate.util.HibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 </beans>

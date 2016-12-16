@@ -5,18 +5,23 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.company.my.card.Card;
 import com.company.my.deck.Deck;
 
 /*
  * one player's DECK  participates in many games; 
  * 
- * during that game, he will have his energy, motivation, credibility impacted.
+ * during that game, he will have his energy, motivation, credibility impacted, because of a card !.
  * 
  */
 @Entity
@@ -30,6 +35,16 @@ public class GameParticipation implements Serializable{
 
 	public static final String GAME_PARTICIPATIONS = "GAMEPARTICIPATIONS";
 	
+	@SequenceGenerator(
+	        name="CFC_GAMEPARTICIPATIONS_SEQUENCE_GENERATOR",
+	        sequenceName="CFC_GAMEPARTICIPATIONS_SEQ"
+	    )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_GAMEPARTICIPATIONS_SEQUENCE_GENERATOR")
+	@Id
+	@Column(name = "ID")
+	private long id;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "DECK_ID")
 	private Deck deck;
@@ -37,6 +52,10 @@ public class GameParticipation implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "GAME_ID")
 	private Game game; 
+	
+	@ManyToOne
+	@JoinColumn(name = "CARD_ID")
+	private Card card; 
 	
 	/*
 	 * This date may be interesting to log each time the user was impacted :D
@@ -57,6 +76,14 @@ public class GameParticipation implements Serializable{
 	
 	
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Deck getDeck(){
 		return this.deck;
 	}
@@ -71,6 +98,14 @@ public class GameParticipation implements Serializable{
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
 	}
 
 	public Date getParticipationDate() {
