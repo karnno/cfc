@@ -7,7 +7,7 @@ import com.company.my.card.Card;
 
 public interface CardDao {
 
-	void save(Card card);
+	Long save(Card card);
 	
 	List<Card> list();
 	

@@ -2,6 +2,7 @@ package com.company.my.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +13,8 @@ import com.company.my.hibernate.util.HibernateDao;
 @Repository("cardDao")
 public class CardDaoImpl extends HibernateDao implements CardDao {
 
-	public void save(Card card) {
-		this.getCurrentSession().save(card);
+	public Long save(Card card) {
+		return (Long) this.getCurrentSession().save(card);
 	}
 
 	/**
@@ -21,7 +22,12 @@ public class CardDaoImpl extends HibernateDao implements CardDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Card> list() {
-		return this.getCurrentSession().createQuery("from Card").list();
+//		return this.getCurrentSession().createQuery("from Card").list();
+		Criteria crit = this.getCurrentSession().createCriteria(Card.class);
+		List<Card> toReturn = crit.list();
+		
+		return toReturn;
+		
 	}
 
 	

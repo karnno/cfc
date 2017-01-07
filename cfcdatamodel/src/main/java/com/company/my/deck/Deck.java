@@ -46,7 +46,7 @@ public class Deck {
 	@Column(name = "NAME")
 	private String deckName;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "PLAYER_ID")
 	private Player player;
 	/*

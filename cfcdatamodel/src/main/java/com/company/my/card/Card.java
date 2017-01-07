@@ -1,6 +1,5 @@
 package com.company.my.card;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,7 +51,7 @@ public class Card {
 	 * NB : To properly map a unidirectional One-to-Many relationship, you only
 	 * need to use the @ManyToOne annotation !!
 	 */
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "DECK_ID")
 	private Deck deck;
 

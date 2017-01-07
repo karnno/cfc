@@ -20,7 +20,7 @@ public class PlayerDaoImpl extends HibernateDao implements PlayerDao {
 	public Player findById(Long id) {
 		Session session = this.getCurrentSession();
 		Criteria crit = session.createCriteria(Player.class);
-		crit.add(Restrictions.eq("player.id", id));
+		crit.add(Restrictions.eq("id", id));
 		
 		return (Player) crit.uniqueResult();
 	}

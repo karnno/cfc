@@ -1,10 +1,13 @@
 package com.company.my.bom;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,10 +51,17 @@ public class Player implements Serializable{
 	@Column(name = "TAGLINE")
 	private String tagLine; 
 	
-	@OneToMany
+	@OneToMany(
+			cascade = CascadeType.PERSIST,
+			fetch = FetchType.LAZY)
 	@JoinColumn(name="PLAYER_ID", 
 	referencedColumnName="ID")
 	List<Deck> decks;
+	
+	public Player(){
+		this.decks = new ArrayList<Deck>();
+	}
+	
 	
 	public long getId() {
 		return id;
