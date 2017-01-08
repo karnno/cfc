@@ -3,6 +3,7 @@ package com.company.my.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -27,12 +28,13 @@ public class GameMoveDaoImpl extends HibernateDao implements GameMoveDao {
 		
 		Criteria crit = this.getCurrentSession().createCriteria(GameMove.class);
 		
-		crit.add(Restrictions.eq("idGame", idGame));
+		crit.add(Restrictions.eq("id.idGame", idGame));
 		
-		crit.add(Restrictions.eq("idDeck1", idGame));
+		crit.add(Restrictions.eq("id.idDeck1", idDeck1));
 
-		crit.add(Restrictions.eq("idDeck2", idGame));
+		crit.add(Restrictions.eq("id.idDeck2", idDeck2));
 
+		crit.addOrder(Order.desc("id.dateMove"));
 		
 		return (List<GameMove>)(crit.list());
 

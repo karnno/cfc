@@ -151,6 +151,9 @@ public class HibernateWithSpringTest {
 		
 	}
 	
+	/**
+	 * Saves two game moves with 2 minutes difference and retrieves them.
+	 */
 	@Test
 	public void testSaveAndRetrieveGameMoves(){
 		Card oneCard = new Card();
@@ -200,6 +203,14 @@ public class HibernateWithSpringTest {
 		
 		List<GameMove>gameMoves = gameMoveDao.findByIdGame(22L);
 		Assert.assertTrue(gameMoves.size() ==2);
+		
+		List<GameMove>gameMoves2 = gameMoveDao.findAllMovesFromGameAndDecks(22L, 1L, 2L);
+		Assert.assertTrue(gameMoves2.size() ==2);
+		
+		Date latestMoveDate = gameMoves2.get(0).getGameMovePK().getDateMove();
+		Date earliestMoveDate = gameMoves2.get(1).getGameMovePK().getDateMove();
+		
+		Assert.assertTrue(latestMoveDate.after(earliestMoveDate));
 	}
 	
 	
