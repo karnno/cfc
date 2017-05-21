@@ -118,7 +118,7 @@ public class HibernateWithSpringTest {
 	
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void testSavePlayerWithADeck(){
 		final String pName = "playerName";
 		final String pTag ="player tag line !!!";
@@ -155,6 +155,7 @@ public class HibernateWithSpringTest {
 	 * Saves two game moves with 2 minutes difference and retrieves them.
 	 */
 	@Test
+	@Ignore
 	public void testSaveAndRetrieveGameMoves(){
 		Card oneCard = new Card();
 		oneCard.setNameCard("gameMoveCard");

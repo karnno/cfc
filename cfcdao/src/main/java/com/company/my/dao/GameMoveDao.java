@@ -24,6 +24,7 @@ public interface GameMoveDao {
 	
 	/**
 	 * Find all moves from one game for given decks.
+	 * The return is sorted by date DESC ! 
 	 * @param idGame
 	 * @param idDeck1
 	 * @param idDeck2

@@ -27,6 +27,16 @@ public abstract class HibernateDao {
 	}
 
 	public  Session getCurrentSession() {
+//		Session toReturn ;
+//		try {
+//			toReturn = sessionFactory.getCurrentSession();
+//		} catch (HibernateException hEx) {
+//			LOGGER.error("could not get current session ?", hEx);
+//			toReturn = sessionFactory.openSession();
+//		}
+//		
+//		return toReturn;
+		
 		return this.sessionFactory.getCurrentSession();
 	}
 }
