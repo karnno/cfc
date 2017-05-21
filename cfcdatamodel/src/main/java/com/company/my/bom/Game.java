@@ -41,8 +41,7 @@ public class Game implements Serializable{
 	@Column(name = "ID")
 	long id;
 	
-	@OneToMany
-	@JoinColumn(name="GAME_ID", 	referencedColumnName="ID")
+	@OneToMany(mappedBy="game")
 	private List<GameParticipation> gameParticipations;
 	
 	

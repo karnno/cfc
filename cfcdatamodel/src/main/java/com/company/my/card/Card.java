@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.company.my.deck.Deck;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CARDS")
@@ -43,7 +44,7 @@ public class Card {
 	 * necessary to specify the target entity explicitly since it can usually be
 	 * inferred from the type of the object being referenced.
 	 * 
-	 * @JoinColumn indicate the owning side of the relationship, it is
+	 * @JoinColumn indicate the OWNING side of the relationship, it is
 	 * responsible for updating the database column. It will create the
 	 * DECK_ID column on the CARD table
 	 * 
@@ -53,6 +54,7 @@ public class Card {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "DECK_ID")
+	@JsonIgnore
 	private Deck deck;
 
 	public Card() {

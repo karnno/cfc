@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import com.company.my.bom.Player;
 import com.company.my.card.Card;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -46,22 +47,24 @@ public class Deck {
 	@Column(name = "NAME")
 	private String deckName;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "PLAYER_ID")
+	@JsonIgnore
 	private Player player;
 	/*
 	 * Uncomment the annotation for BI-Directional relationship !
 	 * 
-	 * 'mappedBy' – means “I am NOT on the SLAVE side”, I am mapped by Card from
+	 * 'mappedBy' – means “I am NOT on the OWNING side”, I am mapped by Card from
 	 * the other side of the relationship. It will also not create the database
 	 * column which makes sense, I would expect a foreign key on the CARD
 	 * table instead.
 	 */
 	/* */
 	@OneToMany(
-			cascade = CascadeType.PERSIST, 
-			mappedBy = "deck", 
-			fetch = FetchType.LAZY)
+			cascade = CascadeType.ALL
+			, mappedBy = "deck"
+			, fetch = FetchType.LAZY
+			)
 	/* */
 	private List<Card> deckCards = new ArrayList<Card>();
 

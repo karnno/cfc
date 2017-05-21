@@ -19,7 +19,7 @@ import com.company.my.card.Card;
  *
  */
 @Entity
-@Table(name=GameMove.GAME_MOVE)
+@Table(name=GameMove.GAME_MOVES)
 public class GameMove implements Serializable{
 
 	/**
@@ -27,7 +27,7 @@ public class GameMove implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final String GAME_MOVE = "GAMEMOVES";
+	public static final String GAME_MOVES = "GAMEMOVES";
 	
 	@EmbeddedId
 	private GameMovePK gameMovePK;
@@ -65,6 +65,12 @@ public class GameMove implements Serializable{
 	private int deck2Credibility;
 	
 
+	public GameMove(){
+		if (this.getGameMovePK()==null){
+			this.setGameMovePK(new GameMovePK());
+		}
+	}
+	
 	public Card getCard() {
 		return card;
 	}
