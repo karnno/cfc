@@ -1,6 +1,5 @@
 package com.company.my.service.deck;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -15,7 +14,7 @@ import com.company.my.deck.Deck;
 import com.company.my.service.card.CardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/cfcservices-context.xml",
+@ContextConfiguration(locations = { "/cfcservices-context-test.xml",
 		"/springcontext.xml" })
 public class DeckServiceTest {
 
