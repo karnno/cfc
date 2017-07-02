@@ -18,7 +18,9 @@
 		destroy-method="close">
 		<property name="driverClassName" value="org.h2.Driver" />
 		<property name="url"
-			value="jdbc:h2:~/test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE;INIT=create schema IF NOT EXISTS test" />
+
+				value="jdbc:h2:~/java/tools/h2_databases/cfcDB_embedded;INIT=RUNSCRIPT FROM 'classpath:create_for_test.sql'" />
+<!-- 			value="jdbc:h2:tcp://localhost/~/java/tools/h2_databases/cfcDB" /> -->
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
@@ -26,26 +28,42 @@
 
 	<!-- Hibernate 4 SessionFactory Bean definition
 	
-	----------- !!!!!!!!
-	 ----------- which replaces the older AnnotationSessionFactoryBean from the hibernate3
+	!!!!!!!!
+	  which replaces the older AnnotationSessionFactoryBean from the hibernate3
 	
 	 -->
 	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="annotatedClasses">
-			<list>
-				<value>com.company.my.card.Card</value>
-				<value>com.company.my.deck.Deck</value>
-			</list>
-		</property>
+<!-- 		<property name="annotatedClasses"> -->
+<!-- 			<list> -->
+<!-- 				<value>com.company.my.card.Card</value> -->
+<!-- 				<value>com.company.my.deck.Deck</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+		<property name="packagesToScan">
+	        <list>
+	            <value>com.company.my.bom</value>
+	            <value>com.company.my.card</value>
+	            <value>com.company.my.deck</value>
+	        </list>
+	    </property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">com.company.my.dialect.improved.ImprovedH2Dialect</prop>
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop>-->
-				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+  				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hbm2ddl.auto">create-drop</prop>
+				<!--
+				So the list of possible options are,
+					validate: validate the schema, makes no changes to the database.
+					update: update the schema.
+					create: creates the schema, destroying previous data.
+					create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
+				-->
+				
 			</props>
 		</property>
 	</bean>
@@ -55,7 +73,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+<!-- 	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
 	
 	<!-- need a processing tool to find the annotations and do something with 
 		them ... -->
@@ -63,6 +81,9 @@
 	<!-- ... it needs a "target" to work on, here it is : -->
 	<context:component-scan base-package="com.company.my" />
 
-
+<!-- 	<bean id="hibernateDao" -->
+<!-- 		class="com.company.my.hibernate.util.HibernateDao"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
 
 </beans>

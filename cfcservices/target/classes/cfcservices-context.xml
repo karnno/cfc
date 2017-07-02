@@ -14,9 +14,5 @@
         http://www.springframework.org/schema/context 
   		http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- need a processing tool to find the annotations and do something with them ... -->
-	<context:annotation-config />
-	<!--  ...  it needs a "target" to work on, here it is : -->
-	<context:component-scan base-package="com.company.my" />
 	
 </beans>

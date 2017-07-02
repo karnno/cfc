@@ -16,8 +16,6 @@
 
 	<context:property-placeholder location="classpath:datasourceconfiguration.properties" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -37,11 +35,14 @@
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop>-->
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 			</props>
 		</property>
 	</bean>
-
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -55,6 +56,9 @@
 	<!-- ... it needs a "target" to work on, here it is : -->
 	<context:component-scan base-package="com.company.my" />
 
-
+<!-- 	<bean id="hibernateDao" -->
+<!-- 		class="com.company.my.hibernate.util.HibernateDao"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
 
 </beans>
