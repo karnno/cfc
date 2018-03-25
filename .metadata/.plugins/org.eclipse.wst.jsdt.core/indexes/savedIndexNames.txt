@@ -1,8 +1,0 @@
-INDEX VERSION 1.3+/Users/karnonoviseth/workspace/cfc_work/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-1942766308.index
-4228985306.index
-2314381045.index
-225802467.index
-2728363995.index
-373330810.index
-593113652.index
