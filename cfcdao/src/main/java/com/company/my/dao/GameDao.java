@@ -7,7 +7,7 @@ public interface GameDao {
 	/**
 	 * Searches and returns the game via its Id
 	 * @param gameId
-	 * @return
+	 * @return the game or null 
 	 */
 	Game foundById(long gameId);
 	
@@ -17,4 +17,10 @@ public interface GameDao {
 	 * @return identifier
 	 */
 	Long save(Game gameToSave);
+	
+	/**
+	 * update the game, for instance with the status
+	 * @param gameToUpdate
+	 */
+	void update(Game gameToUpdate);
 }

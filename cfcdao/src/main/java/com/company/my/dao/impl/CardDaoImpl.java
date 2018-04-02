@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.company.my.card.Card;
+import com.company.my.bom.Card;
 import com.company.my.dao.CardDao;
 import com.company.my.hibernate.util.HibernateDao;
 

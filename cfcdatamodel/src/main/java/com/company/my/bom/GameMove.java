@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.company.my.card.Card;
-
 /**
  * 
  * an entity to give, in one line, the state of the game !!

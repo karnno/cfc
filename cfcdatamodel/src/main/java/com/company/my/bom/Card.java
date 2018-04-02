@@ -1,4 +1,4 @@
-package com.company.my.card;
+package com.company.my.bom;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.company.my.deck.Deck;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,7 +18,9 @@ public class Card {
 
 	@SequenceGenerator(
 	        name="CFC_CARDS_SEQUENCE_GENERATOR",
-	        sequenceName="CFC_CARDS_SEQ"
+	        sequenceName="CFC_CARDS_SEQ",
+	        initialValue=1,
+	        allocationSize=1
 	    )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_CARDS_SEQUENCE_GENERATOR")
 	@Id 

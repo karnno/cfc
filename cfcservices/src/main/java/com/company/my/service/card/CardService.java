@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.company.my.card.Card;
+import com.company.my.bom.Card;
 import com.company.my.dao.CardDao;
 
 @Service

@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.company.my.bom.Deck;
 import com.company.my.bom.Player;
 import com.company.my.dao.PlayerDao;
-import com.company.my.deck.Deck;
 
 @Service
 @Transactional

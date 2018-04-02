@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.company.my.bom.Deck;
 import com.company.my.dao.DeckDao;
-import com.company.my.deck.Deck;
 
 @Service
 public class DeckService {

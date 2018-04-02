@@ -42,6 +42,7 @@ deck1=[
 	{
 		name:"Smoke break",
 		energy:4,
+		picture:"pics/smoke_break.jpg",
 		motivation:0,
 		credibility:0
 	}
@@ -66,6 +67,7 @@ deck2=[
 ,
 	{
 		name:"keith shoulder press",
+		picture:"pics/keithShoulderPress.jpg",
 		energy:-5,
 		motivation:-10,
 		credibility:0
@@ -73,6 +75,7 @@ deck2=[
 ,
 	{
 		name:"kitkat break",
+		picture:"pics/kit_kat_2.jpg",
 		energy:5,
 		motivation:3,
 		credibility:0
@@ -104,6 +107,7 @@ deck2=[
 ,
 	{
 		name:"Crystalisation",
+		picture:"pics/crystallization.jpg",
 		energy:-4,
 		motivation:-4,
 		credibility:0

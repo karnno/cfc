@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.company.my.bom.Game;
 import com.company.my.bom.GameMove;
 import com.company.my.dao.GameMoveDao;
-import com.company.my.deck.Deck;
 
 @Service
 @Transactional
@@ -35,11 +33,11 @@ public class GameMoveService {
 	 * @return List<GameMove>
 	 * @throws Exception
 	 */
-	public List<GameMove> findGameMovesByGameAndDecks (Game game, Deck deck1, Deck deck2) throws Exception{
+	public List<GameMove> findGameMovesByGameAndDecks (Long gameId, Long deck1Id, Long deck2Id) throws Exception{
 		List<GameMove> toReturn = new ArrayList<GameMove>();
 		
-		toReturn = this.gameMoveDao.findAllMovesFromGameAndDecks(game.getId(), deck1.getId(), deck2.getId());
-		LOG.debug("Found {} moves for game id {}, deck1 {}, deck2 {}", toReturn.size(), game.getId(), deck1.getId(), deck2.getId());
+		toReturn = this.gameMoveDao.findAllMovesFromGameAndDecks(gameId, deck1Id, deck2Id);
+		LOG.debug("Found {} moves for game id {}, deck1 {}, deck2 {}", toReturn.size(), gameId, deck1Id, deck2Id);
 		
 		return toReturn;
 	}

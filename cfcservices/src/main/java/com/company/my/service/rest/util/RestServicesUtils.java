@@ -10,7 +10,7 @@ public class RestServicesUtils {
 		
 		toReturn.getGameMovePK().setIdGame(wrapper.getIdGame());
 		toReturn.getGameMovePK().setIdDeck1(wrapper.getIdDeck1());
-		toReturn.getGameMovePK().setIdDeck1(wrapper.getIdDeck1());
+		toReturn.getGameMovePK().setIdDeck2(wrapper.getIdDeck2());
 		toReturn.getGameMovePK().setDateMove(wrapper.getDateMove());
 		
 		toReturn.setCard(wrapper.getCard());

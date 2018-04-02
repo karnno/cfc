@@ -1,4 +1,4 @@
-package com.company.my.deck;
+package com.company.my.bom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.company.my.bom.Player;
-import com.company.my.card.Card;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -37,6 +35,7 @@ public class Deck {
 	@SequenceGenerator(
 	        name="CFC_DECKS_SEQUENCE_GENERATOR",
 	        sequenceName="CFC_DECKS_SEQ",
+	        initialValue=1,
 	        allocationSize=1
 	    )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_DECKS_SEQUENCE_GENERATOR")

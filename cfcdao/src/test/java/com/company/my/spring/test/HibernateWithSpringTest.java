@@ -15,15 +15,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.company.my.bom.Card;
+import com.company.my.bom.Deck;
 import com.company.my.bom.GameMove;
 import com.company.my.bom.GameMovePK;
 import com.company.my.bom.Player;
-import com.company.my.card.Card;
 import com.company.my.dao.CardDao;
 import com.company.my.dao.DeckDao;
 import com.company.my.dao.GameMoveDao;
 import com.company.my.dao.PlayerDao;
-import com.company.my.deck.Deck;
 
 /**
  * Does not work : it calls the bean "deckDao" but since it's not Transactional, the session is never set !
@@ -36,7 +36,7 @@ import com.company.my.deck.Deck;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration (name="HibernateWithSpringTest-context.xml")// By default look for [class name]-context.xml file
+@ContextConfiguration (locations="/HibernateWithSpringTest-context.xml")// By default look for [class name]-context.xml file
 @TransactionConfiguration
 @Transactional
 public class HibernateWithSpringTest {

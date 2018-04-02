@@ -16,7 +16,7 @@
 
 
 	<!-- Import  database configuration, don't forget to start the database server :-)) -->
-	<import resource="classpath:springcontext.xml"/>
+<!-- 	<import resource="classpath:springcontext.xml"/> -->
 
 	<!-- need a processing tool to find the annotations and do something with them ... -->
 	<context:annotation-config />

@@ -2,7 +2,7 @@ package com.company.my.dao;
 
 import java.util.List;
 
-import com.company.my.card.Card;
+import com.company.my.bom.Card;
 
 
 public interface CardDao {

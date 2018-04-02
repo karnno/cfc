@@ -2,7 +2,7 @@ package com.company.my.service.wrapper;
 
 import java.util.Date;
 
-import com.company.my.card.Card;
+import com.company.my.bom.Card;
 
 /**
  * Pojo Wrapper for the rest service to be automatically filled with user query data

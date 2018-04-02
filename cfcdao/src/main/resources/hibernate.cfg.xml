@@ -23,6 +23,7 @@
     <property name="format_sql">true</property>
     
   
+  	<mapping class="com.company.my.bom.Player" />
      <mapping class="com.company.my.card.Card" />
      <mapping class="com.company.my.deck.Deck" />
  

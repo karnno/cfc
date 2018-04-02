@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context 
+  		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url"
+					value="jdbc:h2:~/java/tools/h2_databases/cfcDB_embedded" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+
+	<!-- Hibernate 4 SessionFactory Bean definition
+	
+	!!!!!!!!
+	  which replaces the older AnnotationSessionFactoryBean from the hibernate3
+	
+	 -->
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+<!-- 		<property name="annotatedClasses"> -->
+<!-- 			<list> -->
+<!-- 				<value>com.company.my.card.Card</value> -->
+<!-- 				<value>com.company.my.deck.Deck</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+
+		<property name="packagesToScan">
+	        <list>
+	            <value>com.company.my.bom</value>
+	        </list>
+	    </property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">com.company.my.dialect.improved.ImprovedH2Dialect</prop>
+				<!-- <prop key="hibernate.current_session_context_class">thread</prop>-->
+				<prop key="hibernate.show_sql">true</prop>
+  				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<!--
+				So the list of possible options are,
+					validate: validate the schema, makes no changes to the database.
+					update: update the schema.
+					create: creates the schema, destroying previous data.
+					create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
+				-->
+				
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+<!-- 	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
+	
+	<!-- need a processing tool to find the annotations and do something with 
+		them ... -->
+	<context:annotation-config />
+	<!-- ... it needs a "target" to work on, here it is : -->
+	<context:component-scan base-package="com.company.my" />
+
+<!-- 	<bean id="hibernateDao" -->
+<!-- 		class="com.company.my.hibernate.util.HibernateDao"> -->
+<!-- 		<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 	</bean> -->
+
+</beans>

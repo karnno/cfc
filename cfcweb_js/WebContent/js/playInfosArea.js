@@ -107,3 +107,6 @@ PlayInfosArea.prototype.setPlayerInfo= function(){
  
 };
 
+PlayInfosArea.prototype.getPlayerInfo = function(){
+	return this.playerInfo;
+}

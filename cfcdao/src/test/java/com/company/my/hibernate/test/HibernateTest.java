@@ -5,10 +5,11 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import com.company.my.card.Card;
-import com.company.my.deck.Deck;
+import com.company.my.bom.Card;
+import com.company.my.bom.Deck;
 import com.company.my.hibernate.util.HibernateUtil;
 
 /**
@@ -25,6 +26,7 @@ import com.company.my.hibernate.util.HibernateUtil;
 public class HibernateTest {
  
 	@Test
+	@Ignore
 	public void testIt() {
         try{  
         Session session = HibernateUtil.getSessionFactory().openSession();

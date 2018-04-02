@@ -8,7 +8,7 @@ var DECK_Y1 = 10;
 var DECK_X2 = DECK_X1 + CARD_WIDTH;
 var DECK_Y2 = DECK_Y1 + CARD_HEIGHT; 
 
-function PlayArea(gameGfxCtx, deck, playerInfo, playerInfoTextId, playCardNameId, playTextEnergyId, playTextMotivationId, playTextCredibilityId, playPotentialCardOnOpponent, playPotentialCardOnSelf) {
+function PlayArea(gameGfxCtx, deck, playerInfo, playerInfoTextId, playExtraInfoCellId, playCardNameId, playTextEnergyId, playTextMotivationId, playTextCredibilityId, playPotentialCardOnOpponent, playPotentialCardOnSelf) {
 	
 	this.gameGfxCtx=gameGfxCtx;
 	this.deck = deck;
@@ -16,6 +16,7 @@ function PlayArea(gameGfxCtx, deck, playerInfo, playerInfoTextId, playCardNameId
 	this.playerInfo = playerInfo;
 	
 	this.playerInfoTextId = playerInfoTextId;
+	this.playerExtraInfoCellId = playExtraInfoCellId; 
 	this.playCardNameId = playCardNameId;
 	this.playTextEnergyId = playTextEnergyId; 
 	this.playTextMotivationId = playTextMotivationId;
@@ -284,6 +285,11 @@ PlayArea.prototype.removePotentialCardFromDeck = function () {
 	}
 	
 	
+	if (this.deck.length == 0){
+		$('#' +this.playerExtraInfoCellId).html('No more cards !');
+		
+	}
+	
 };
 
 PlayArea.prototype.replaceCoordinates = function (displayableObject, previousX1, previousX2) {
@@ -296,3 +302,6 @@ PlayArea.prototype.replaceCoordinates = function (displayableObject, previousX1,
 	previousX2[0] = tempX2;
 };
 
+PlayArea.prototype.getDeck = function(){
+	return this.deck;
+}

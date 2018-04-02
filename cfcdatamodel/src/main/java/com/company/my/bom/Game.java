@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /*
  * One game is defined once.
@@ -33,7 +35,9 @@ public class Game implements Serializable{
 	
 	@SequenceGenerator(
 	        name="CFC_GAMES_SEQUENCE_GENERATOR",
-	        sequenceName="CFC_GAMES_SEQ"
+	        sequenceName="CFC_GAMES_SEQ",
+	        initialValue=1,
+	        allocationSize=1
 	    )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_GAMES_SEQUENCE_GENERATOR")
 	@Id
@@ -45,6 +49,7 @@ public class Game implements Serializable{
 	
 	
 	@Column(name = "GAME_DATE")
+	@Temporal(TemporalType.DATE)
 	private Date dateGame = new Date(); 
 	
 	@Enumerated(EnumType.STRING)

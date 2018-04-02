@@ -18,5 +18,9 @@ public class GameDaoImpl extends HibernateDao implements GameDao {
 	public Long save(Game gameToSave) {
 		return (Long) this.getCurrentSession().save(gameToSave);
 	}
+	
+	public void update(Game gameToUpdate) {
+		this.getCurrentSession().saveOrUpdate(gameToUpdate);
+	}
 
 }

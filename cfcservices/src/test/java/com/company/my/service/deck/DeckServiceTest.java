@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.company.my.card.Card;
-import com.company.my.deck.Deck;
+import com.company.my.bom.Card;
+import com.company.my.bom.Deck;
 import com.company.my.service.card.CardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

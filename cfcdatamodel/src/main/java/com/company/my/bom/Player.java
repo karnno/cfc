@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.company.my.deck.Deck;
-
 /**
  * A user has a tag line:
  * ex:
@@ -37,7 +35,9 @@ public class Player implements Serializable{
 	
 	@SequenceGenerator(
 	        name="CFC_PLAYERS_SEQUENCE_GENERATOR",
-	        sequenceName="CFC_PLAYERS_SEQ"
+	        sequenceName="CFC_PLAYERS_SEQ",
+	        initialValue=1,
+	        allocationSize=1
 	    )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_PLAYERS_SEQUENCE_GENERATOR")
 	@Id

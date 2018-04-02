@@ -15,14 +15,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.company.my.card.Card;
-import com.company.my.deck.Deck;
-
 /*
  * one player's DECK  participates in many games; 
  * 
  * during that game, he will have his energy, motivation, credibility impacted, because of a card !.
  * 
+ * Edit : the card info is not needed.
  */
 @Entity
 @Table(name=GameParticipation.GAME_PARTICIPATIONS)
@@ -37,7 +35,9 @@ public class GameParticipation implements Serializable{
 	
 	@SequenceGenerator(
 	        name="CFC_GAMEPARTICIPATIONS_SEQUENCE_GENERATOR",
-	        sequenceName="CFC_GAMEPARTICIPATIONS_SEQ"
+	        sequenceName="CFC_GAMEPARTICIPATIONS_SEQ",
+	        initialValue=1,
+	        allocationSize=1
 	    )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CFC_GAMEPARTICIPATIONS_SEQUENCE_GENERATOR")
 	@Id
@@ -53,16 +53,17 @@ public class GameParticipation implements Serializable{
 	@JoinColumn(name = "GAME_ID")
 	private Game game; 
 	
-	@ManyToOne
-	@JoinColumn(name = "CARD_ID")
-	private Card card; 
+	//TODO i think the card info is not useful. If we want to know the card played in the game, we use the GAME MOVES table !
+//	@ManyToOne
+//	@JoinColumn(name = "CARD_ID")
+//	private Card card; 
 	
 	/*
 	 * This date may be interesting to log each time the user was impacted :D
 	 */
 	@Column(name = "PARTICIPATION_DATE")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date participationDate;
+	@Temporal(TemporalType.DATE)
+	private Date participationDate = new Date();
 	
 	
 	@Column(name = "ENERGY")
@@ -100,13 +101,13 @@ public class GameParticipation implements Serializable{
 		this.game = game;
 	}
 
-	public Card getCard() {
-		return card;
-	}
-
-	public void setCard(Card card) {
-		this.card = card;
-	}
+//	public Card getCard() {
+//		return card;
+//	}
+//
+//	public void setCard(Card card) {
+//		this.card = card;
+//	}
 
 	public Date getParticipationDate() {
 		return participationDate;

@@ -2,12 +2,19 @@ package com.company.my.dao;
 
 import java.util.List;
 
-import com.company.my.deck.Deck;
+import com.company.my.bom.Deck;
 
 public interface DeckDao {
 
 	void save(Deck deck);
 	List<Deck> list();
+	
+	/**
+	 * find the deck from its id
+	 * @param idDeck
+	 * @return one Deck or null
+	 */
+	public Deck findById(long idDeck);
 	
 	/**
 	 * Returns the decks with all its cards

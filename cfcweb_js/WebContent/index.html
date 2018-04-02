@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>CFC</title>
-<audio id="zik" src="zik/zik.ogg" type="audio/ogg"></audio>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/Splice.js"></script>
 <script type="text/javascript" src="js/Cards.js"></script>
@@ -20,6 +19,16 @@
 		width: 900px;
 		overflow: auto;
 	}
+	
+	.gameStateSavingRow {
+		float: left;
+		margin-top : 5px;
+		border: 1px solid black;
+		width: 900px;
+		height: 30px;
+		overflow: auto;
+	}
+	
 	.separatorCell {
 		float: left;
 		 
@@ -32,8 +41,14 @@
 		width: 430px; 
 		height: 400px;
 	}
+	.playerExtraInfoCell {
+		width: 430px;
+		font-weight:bold;
+		text-align:center;
+	}
 </style>
 <body>
+	<!-- big row for the gameplay -->
 	<div class="row">
 		<div id='player1divId' class="cell">
 
@@ -45,6 +60,7 @@
 				</div>
 			</div>
 			<canvas style="border: blue 1px solid" id="ply1Canvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre � jour pour jouer.</canvas>
+			<div id="ply1_extra_info_cell" class="playerExtraInfoCell">&nbsp;</div>
 			<div>Name: <span style="font-weight:bold" id="card_ply1_name"></span>
 			</div>
 			<div>Energy: <span id="card_ply1_energy"></span><br />
@@ -70,6 +86,7 @@
 				</div>
 			</div>
 			<canvas style="border: red 1px solid" id="ply2Canvas">Votre navigateur ne supporte pas HTML5, veuillez le mettre � jour pour jouer.</canvas>
+			<div id="ply2_extra_info_cell" class="playerExtraInfoCell">&nbsp;</div>
 			<div>Name: <span style="font-weight:bold" id="card_ply2_name"></span><br/>
 			</div>
 			<div>Energy: <span id="card_ply2_energy"></span><br />
@@ -83,6 +100,10 @@
 			</div>
 		</div>
 
+	</div>
+	
+	<div id="gameStateSaving" class="gameStateSavingRow">
+		<input id="saveGameStateButton" type="button" value="Save the Game ">
 	</div>
 </body>
 </html>

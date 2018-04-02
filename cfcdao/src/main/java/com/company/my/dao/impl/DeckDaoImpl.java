@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.company.my.bom.Deck;
 import com.company.my.dao.DeckDao;
-import com.company.my.deck.Deck;
 import com.company.my.hibernate.util.HibernateDao;
 
 @Repository("deckDao")
@@ -34,6 +34,10 @@ public class DeckDaoImpl extends HibernateDao implements DeckDao{
 		return toReturn;
 	}
 
+	public Deck findById(long idDeck) {
+		return (Deck) this.getCurrentSession().get(Deck.class, idDeck);
+		
+	}
 	
 	public Deck findDeckWithCardsById(long idDeck){
 		
