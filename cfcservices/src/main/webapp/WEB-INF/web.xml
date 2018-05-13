@@ -55,6 +55,6 @@
 	<!-- I put my spring context config file in src/main/resources instead of WEB-INF, need to specify its location -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:cfcservices-context.xml</param-value>
+		<param-value>classpath:cfc-services-context.xml</param-value>
 	</context-param>
 </web-app>

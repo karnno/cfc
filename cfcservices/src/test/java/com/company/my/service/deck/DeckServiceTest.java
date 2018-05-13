@@ -15,7 +15,7 @@ import com.company.my.service.card.CardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/cfcservices-context-test.xml",
-		"/springcontext.xml" })
+		"/cfc-dao.xml" })
 public class DeckServiceTest {
 
 	@Autowired
@@ -43,7 +43,7 @@ public class DeckServiceTest {
 		// try {
 		// ClassPathXmlApplicationContext context = new
 		// ClassPathXmlApplicationContext(
-		// "springcontext-services.xml", "springcontext.xml");
+		// "springcontext-services.xml", "cfc-dao.xml");
 		// } catch (Exception ee) {
 		// ee.printStackTrace();
 		// }

@@ -18,8 +18,8 @@
   		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-<!-- Import  database configuration, don't forget to start the database server :-)) -->
-	<import resource="classpath:springcontext.xml"/>
+	<!-- Import  database configuration, don't forget to start the database server :-)) -->
+	<import resource="classpath:cfc-dao.xml"/>
 	
 
 	<!-- need a processing tool to find the annotations and do something with them ... -->

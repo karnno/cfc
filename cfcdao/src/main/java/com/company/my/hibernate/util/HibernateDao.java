@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * See HibernateDao bean declaration in springcontext.xml configuration file
+ * See HibernateDao bean declaration in cfc-dao.xml configuration file
  * 
  */
 public abstract class HibernateDao {
