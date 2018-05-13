@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.0.1.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
@@ -54,7 +54,7 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-annotations</artifactId>
-		    <version>2.7.0</version>
+		    <version>${jackson.library}</version>
 		</dependency>
 
 		
@@ -62,13 +62,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.10</version>
+			<version>${slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.13</version>
+			<version>${logback.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>

@@ -1,31 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.company.my</groupId>
-  <artifactId>cfcparent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+	<groupId>com.company.my</groupId>
+	<artifactId>cfcparent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <name>cfcparent</name>
-  <url>http://maven.apache.org</url>
+	<name>cfcparent</name>
+	<url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Generic properties -->
+		<java.version>1.7</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <modules>
-  	<module>../cfcdatamodel</module>
-  	<module>../cfcdao</module>
-  	<module>../cfcservices</module>
-    
-  </modules>
+		<!-- Spring -->
+		<spring-framework.version>4.3.0.RELEASE</spring-framework.version>
+		
+		<!-- Spring security -->
+		<org.springframework.security.version>3.2.3.RELEASE</org.springframework.security.version>
+
+		<!-- Hibernate / JPA -->
+		<hibernate.version>4.2.1.Final</hibernate.version>
+
+		<!-- Logging -->
+		<logback.version>1.0.13</logback.version>
+		<slf4j.version>1.7.10</slf4j.version>
+
+		<!-- Test -->
+		<junit.version>4.12</junit.version>
+		
+		<!-- Jackson -->
+		<jackson.library>2.7.5</jackson.library>
+		
+		<maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<modules>
+		<module>../cfcdatamodel</module>
+		<module>../cfcdao</module>
+		<module>../cfcservices</module>
+
+	</modules>
 </project>

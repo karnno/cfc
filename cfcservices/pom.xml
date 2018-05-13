@@ -18,17 +18,6 @@
 	<name>cfcservices</name>
 
 
-	<properties>
-		<!-- Spring -->
-		<spring-framework.version>4.3.0.RELEASE</spring-framework.version>
-
-		<!-- Test -->
-		<junit.version>4.12</junit.version>
-		
-		<!--  -->
-		<jackson.library>2.7.5</jackson.library>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.company.my</groupId>
@@ -71,6 +60,23 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
+		
+		<!-- The Core Spring Security support – spring-security-core – 
+		contains authentication and access control functionality, 
+		and has support for standalone (non-web) applications, method level security and JDBC -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security.version}</version>
+		</dependency>
+		
+		<!-- This contains filters and related web security infrastructure enabling URL access control in a Servlet environment. -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${org.springframework.security.version}</version>
+		</dependency>
+
 
 		<!-- Then, to enable Hibernate to use its proxy model, we need the javassist as well: -->
 		<dependency>
@@ -79,6 +85,7 @@
 		   	<version>3.18.2-GA</version>
 		</dependency>
 
+		<!-- j2ee WEB part  -->
 		<dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -97,4 +104,18 @@
         </dependency>
 
 	</dependencies>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
