@@ -4,7 +4,7 @@
     	<artifactId>cfcparent</artifactId>
     	<groupId>com.company.my</groupId>
     	<version>0.0.1-SNAPSHOT</version>
-    	<relativePath>../cfcparent</relativePath>
+    	<relativePath>../cfcparent/pom.xml</relativePath>
   	</parent>
   
   <artifactId>cfcdao</artifactId>
@@ -108,7 +108,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>

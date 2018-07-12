@@ -50,7 +50,10 @@ public class PlayerService {
 		playerDao.save(toUpdate);
 	}
 	
-	
+	@Transactional
+	public void savePLayer(Player toSave) {
+		this.playerDao.save(toSave);
+	}
 	
 	
 }

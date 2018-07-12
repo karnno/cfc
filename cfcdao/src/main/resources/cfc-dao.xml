@@ -38,7 +38,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean id="persistenceExceptionTranslationPostProcessor" 
+	class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	
 	<!-- need a processing tool to find the annotations and do something with 
 		them ... -->

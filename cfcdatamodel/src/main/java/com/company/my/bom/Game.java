@@ -56,7 +56,9 @@ public class Game implements Serializable{
 	@Column(name= "GAME_STATUS")
 	private GameStatus gameStatus;
 	
-	
+	public Game() {
+		this.gameStatus = GameStatus.INITIAL;
+	}
 	public long getId() {
 		return id;
 	}

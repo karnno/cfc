@@ -1,6 +1,7 @@
 package com.company.my.bom;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -30,6 +31,16 @@ public class GameMovePK implements Serializable {
 		
 	}
 	
+	public GameMovePK(long idGame, long idDeck1, long idDeck2, Date moveDate) {
+		this.idGame   = idGame;
+		this.idDeck1  = idDeck1;
+		this.idDeck2  = idDeck2;
+		this.dateMove = moveDate;
+	}
+	
+	public static GameMovePK newGameMovePK (GameMovePK previousGameMovePK) {
+		return new GameMovePK (previousGameMovePK.idGame, previousGameMovePK.idDeck1, previousGameMovePK.idDeck2, Calendar.getInstance().getTime());
+	}
 	
 	@Override
     public boolean equals(Object obj) {

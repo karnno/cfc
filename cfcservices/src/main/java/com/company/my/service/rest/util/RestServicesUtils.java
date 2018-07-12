@@ -1,6 +1,7 @@
 package com.company.my.service.rest.util;
 
 import com.company.my.bom.GameMove;
+import com.company.my.bom.GameMoveFrom;
 import com.company.my.service.wrapper.GameMoveWrapper;
 
 public class RestServicesUtils {
@@ -14,7 +15,7 @@ public class RestServicesUtils {
 		toReturn.getGameMovePK().setDateMove(wrapper.getDateMove());
 		
 		toReturn.setCard(wrapper.getCard());
-		toReturn.setCardFromDeck1(wrapper.isCardFromDeck1());
+		toReturn.setGameMoveFrom(wrapper.isCardFromDeck1()?GameMoveFrom.PLAYER1 : GameMoveFrom.PLAYER2);
 		
 		toReturn.setDeck1Energy(wrapper.getDeck1Energy());
 		toReturn.setDeck1Credibility(wrapper.getDeck1Credibility());

@@ -2,6 +2,8 @@ package com.company.my.bom;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,6 +41,9 @@ public class Card {
 	@Column(name = "CREDIBILITY")
 	int credibility;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name= "CARDTYPE")
+	private CardType cardType = CardType.ATTACK;
 	/*
 	 * @ManyToOne annotation defines a single-valued association to another
 	 * entity class that has many-to-one multiplicity. It is not normally
@@ -115,6 +120,14 @@ public class Card {
 		this.credibility = credibility;
 	}
 
+	public CardType getCardType() {
+		return this.cardType;
+	}
+	
+	public void setCardType(CardType cType) {
+		this.cardType = cType;
+	}
+	
 	public void setEffectValues(int energy, int motivation, int credibility){
 		this.setEnergy(energy);
 		this.setMotivation(motivation);
@@ -127,6 +140,7 @@ public class Card {
 		StringBuilder sBuilder = new StringBuilder();
 		sBuilder
 			.append("Card name [").append(this.getNameCard()).append("] ")
+			.append(" TYPE [" ).append(this.getCardType().toString()).append("] ")
 			.append(" ENERGY [").append(this.getEnergy()).append("] ")
 			.append(" MOTIVATION [").append(this.getMotivation()).append("] ")
 			.append(" CREDIBILITY [").append(this.getCredibility()).append("] ")

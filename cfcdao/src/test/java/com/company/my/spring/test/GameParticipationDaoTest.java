@@ -51,7 +51,8 @@ public class GameParticipationDaoTest {
 		Game game = new Game();
 		game.setDateGame(new SimpleDateFormat("yyyy-MM-dd").parse("2017-11-15") ); //Calendar.getInstance().getTime());
 		game.setGameStatus(GameStatus.INITIAL);
-		Long idGame = gameDao.save(game);
+		gameDao.save(game);
+		Long idGame = game.getId();
 		System.out.println("Saved new game with id = " + idGame);
 		final String oneDeckName = "testDeck_" + System.currentTimeMillis();
 		final String oneCardName = "testCard";
@@ -62,6 +63,7 @@ public class GameParticipationDaoTest {
 		oneCard.setEffectValues(5, 4, 3);
 		
 		deckDao.save(oneDeck);
+		oneCard.setDeck(oneDeck);
 		cardDao.save(oneCard);
 		
 		

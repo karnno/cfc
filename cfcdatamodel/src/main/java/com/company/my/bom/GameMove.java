@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -30,7 +32,9 @@ public class GameMove implements Serializable{
 	@EmbeddedId
 	private GameMovePK gameMovePK;
 	
-
+	@Enumerated(EnumType.STRING)
+	@Column(name= "GAME_MOVE_TYPE")
+	private GameMoveType gameMoveType;
 	/**
 	 * to know which card was played at that moment
 	 */
@@ -41,8 +45,9 @@ public class GameMove implements Serializable{
 	/**
 	 * to know if it's the player 1 who used the card or not
 	 */
-	@Column(name="CARD_DECK1")
-	private boolean cardFromDeck1;
+	@Enumerated(EnumType.STRING)
+	@Column(name= "GAME_MOVE_FROM")
+	private GameMoveFrom gameMoveFrom;
 	
 	@Column(name = "DECK1_ENERGY")
 	private int deck1Energy;
@@ -67,6 +72,16 @@ public class GameMove implements Serializable{
 		if (this.getGameMovePK()==null){
 			this.setGameMovePK(new GameMovePK());
 		}
+		
+		this.gameMoveType = GameMoveType.PLAY_CARD;
+	}
+	
+	public GameMoveType getGameMoveType() {
+		return gameMoveType;
+	}
+	
+	public void setGameMoveType(GameMoveType gmType) {
+		this.gameMoveType = gmType;
 	}
 	
 	public Card getCard() {
@@ -81,12 +96,12 @@ public class GameMove implements Serializable{
 		return gameMovePK;
 	}
 	
-	public boolean isCardFromDeck1() {
-		return cardFromDeck1;
+	public GameMoveFrom getGameMoveFrom() {
+		return this.gameMoveFrom;
 	}
 
-	public void setCardFromDeck1(boolean cardFromDeck1) {
-		this.cardFromDeck1 = cardFromDeck1;
+	public void setGameMoveFrom(GameMoveFrom gmf) {
+		this.gameMoveFrom = gmf;
 	}
 
 	
@@ -143,4 +158,14 @@ public class GameMove implements Serializable{
 		this.deck2Credibility = deck2Credibility;
 	}
 
+	public void setVitals(int player1_energy, int player1_motivation, int player1_credibility, 
+			int player2_energy, int player2_motivation, int player2_credibility) {
+		this.deck1Energy 		= player1_energy;
+		this.deck1Motivation 	= player1_motivation;
+		this.deck1Credibility 	= player1_credibility;
+		
+		this.deck2Energy 		= player2_energy;
+		this.deck2Motivation 	= player2_motivation;
+		this.deck2Credibility 	= player2_credibility;
+	}
 }

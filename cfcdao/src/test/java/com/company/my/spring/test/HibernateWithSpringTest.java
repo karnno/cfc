@@ -12,12 +12,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.company.my.bom.Card;
 import com.company.my.bom.Deck;
 import com.company.my.bom.GameMove;
+import com.company.my.bom.GameMoveFrom;
 import com.company.my.bom.GameMovePK;
 import com.company.my.bom.Player;
 import com.company.my.dao.CardDao;
@@ -37,7 +37,7 @@ import com.company.my.dao.PlayerDao;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration (locations="/HibernateWithSpringTest-context.xml")// By default look for [class name]-context.xml file
-@TransactionConfiguration
+
 @Transactional
 public class HibernateWithSpringTest {
 
@@ -70,8 +70,9 @@ public class HibernateWithSpringTest {
 			oneCard.setNameCard(oneCardName);
 			oneCard.setEffectValues(5, 4, 3);
 			
+			oneDeck.getDeckCards().add(oneCard);
 			deckDao.save(oneDeck);
-			cardDao.save(oneCard);
+			//cardDao.save(oneCard);
 			
 			
 			final long savedDeckID = oneDeck.getId();
@@ -178,7 +179,7 @@ public class HibernateWithSpringTest {
 		pk1.setDateMove(move1_date);
 		move1.setGameMovePK(pk1);
 		move1.setCard(oneCard);
-		move1.setCardFromDeck1(true);
+		move1.setGameMoveFrom(GameMoveFrom.PLAYER1);
 		
 		
 		GameMove move2 = new GameMove();
@@ -189,7 +190,7 @@ public class HibernateWithSpringTest {
 		pk2.setDateMove(move2_date);
 		move2.setGameMovePK(pk2);
 		move2.setCard(oneCard);
-		move2.setCardFromDeck1(false);
+		move1.setGameMoveFrom(GameMoveFrom.PLAYER2);
 		
 		
 		cardDao.save(oneCard);

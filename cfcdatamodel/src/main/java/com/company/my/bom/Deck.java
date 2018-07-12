@@ -65,6 +65,9 @@ public class Deck {
 			, fetch = FetchType.LAZY
 			)
 	/* */
+	
+	// I let spring handle the entity manager so I can stay with my jpa annotations and not mix with pure Hibernate annotations
+	//@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
 	private List<Card> deckCards = new ArrayList<Card>();
 
 

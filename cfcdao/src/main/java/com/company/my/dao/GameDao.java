@@ -14,9 +14,8 @@ public interface GameDao {
 	/**
 	 * Save the game data
 	 * @param gameToSave
-	 * @return identifier
 	 */
-	Long save(Game gameToSave);
+	void save(Game gameToSave);
 	
 	/**
 	 * update the game, for instance with the status
