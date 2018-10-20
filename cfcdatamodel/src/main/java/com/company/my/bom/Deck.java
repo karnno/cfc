@@ -46,10 +46,16 @@ public class Deck {
 	@Column(name = "NAME")
 	private String deckName;
 
-	@ManyToOne
-	@JoinColumn(name = "PLAYER_ID")
+	/**
+	 * owning side of the relationship with player
+	 */
+	@ManyToOne(optional=true)
+	@JoinColumn(name = "PLAYER_ID", nullable = true, unique = false, updatable = true)
 	@JsonIgnore
 	private Player player;
+	
+	
+	
 	/*
 	 * Uncomment the annotation for BI-Directional relationship !
 	 * 

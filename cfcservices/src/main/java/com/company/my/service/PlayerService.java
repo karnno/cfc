@@ -54,6 +54,13 @@ public class PlayerService {
 	public void savePLayer(Player toSave) {
 		this.playerDao.save(toSave);
 	}
+
+	@Transactional
+	public Player findPlayerByUserNameAndPassword(String name, String password) {
+		Player toReturn = this.playerDao.findByNameAndPassword(name, password);
+		
+		return toReturn;
+	}
 	
 	
 }

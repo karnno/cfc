@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import com.company.my.bom.Deck;
 import com.company.my.dao.DeckDao;
-import com.company.my.hibernate.util.HibernateDao;
+import com.company.my.hibernate.util.AbstractHibernateDao;
 
 @Repository("deckDao")
-public class DeckDaoImpl extends HibernateDao implements DeckDao{
+public class DeckDaoImpl extends AbstractHibernateDao implements DeckDao{
 
 	private static final Logger LOG = LoggerFactory.getLogger(DeckDaoImpl.class) ;
 	 

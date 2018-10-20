@@ -19,7 +19,7 @@
 	<!-- Hibernate 4 SessionFactory Bean definition -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="packagesToScan" value="com.company.my" />
+		<property name="packagesToScan" value="com.company.my.bom" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>

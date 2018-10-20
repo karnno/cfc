@@ -57,4 +57,13 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:cfc-services-context.xml</param-value>
 	</context-param>
+
+	<!-- We have 2 profiles in the cfc-dao.xml file so, let's activate one
+		more info here :
+		http://www.baeldung.com/spring-profiles 
+	 -->
+	<context-param>
+	    <param-name>spring.profiles.active</param-name>
+	    <param-value>prodProfile</param-value>
+	</context-param>
 </web-app>

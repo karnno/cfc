@@ -47,6 +47,9 @@ public class Player implements Serializable{
 	@Column(name = "NAME")
 	private String name;
 	
+	@Column(name = "PASSWORD")
+	private String password;
+	
 	@Column(name = "TAGLINE")
 	private String tagLine; 
 	
@@ -81,6 +84,16 @@ public class Player implements Serializable{
 	public String getTagLine() {
 		return tagLine;
 	}
+	
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
 
 	public void setTagLine(String tagLine) {
 		this.tagLine = tagLine;

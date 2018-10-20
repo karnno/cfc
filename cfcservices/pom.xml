@@ -25,6 +25,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.company.my</groupId>
+			<artifactId>cfcdao</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+        	<scope>test</scope>
+		</dependency>
 
 		<!-- Test Artifacts -->
 		<dependency>

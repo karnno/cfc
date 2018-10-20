@@ -8,4 +8,6 @@ public interface PlayerDao {
 	public Player findById(Long id);
 	public Player findByName(String name);
 	
+	public Player findByNameAndPassword(String name, String password);
+	
 }

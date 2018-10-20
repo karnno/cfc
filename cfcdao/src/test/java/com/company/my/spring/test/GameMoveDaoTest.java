@@ -1,7 +1,7 @@
-package com.company.my.service.gamemove;
+package com.company.my.spring.test;
 
+import java.text.ParseException;
 import java.util.Calendar;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.company.my.bom.Card;
 import com.company.my.bom.CardType;
@@ -19,39 +20,40 @@ import com.company.my.bom.GameMoveFrom;
 import com.company.my.bom.GameMovePK;
 import com.company.my.bom.GameMoveType;
 import com.company.my.bom.Player;
-import com.company.my.service.PlayerService;
-import com.company.my.service.card.CardService;
-import com.company.my.service.deck.DeckService;
-import com.company.my.service.game.GameService;
+import com.company.my.dao.CardDao;
+import com.company.my.dao.DeckDao;
+import com.company.my.dao.GameDao;
+import com.company.my.dao.GameMoveDao;
+import com.company.my.dao.PlayerDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/cfcservices-context-test.xml", "/cfcdao-test-context.xml" })
-public class GameMoveServiceTest {
-
-	@Autowired
-	GameService gameService;
+@ContextConfiguration (locations="/cfcdao-test-context.xml")// By default look for [class name]-context.xml file
+@Transactional
+public class GameMoveDaoTest {
 	
 	@Autowired
-	GameMoveService gmService;
+	GameDao gameDao;
 	
 	@Autowired
-	PlayerService playerService;
+	PlayerDao playerDao;
+	@Autowired
+	DeckDao deckDao;
 	
 	@Autowired
-	CardService cardService;
+	CardDao cardDao;
 	
 	@Autowired
-	DeckService deckService;
+	GameMoveDao gmDao;
 	
 	@Test
-	public void runTest() throws Exception{
+	public void testSaveGameMove() throws ParseException {
 		
 		Calendar cal = Calendar.getInstance();
 		// create player1
 		Player player1 = new Player();
 		player1.setName("player1");
 		player1.setTagLine("May the 4th be with you");
-		playerService.savePLayer(player1);
+		playerDao.save(player1);
 		
 		// create deck 1 with one card 1
 		Deck player1_Deck = new Deck("player1_Deck");
@@ -66,13 +68,13 @@ public class GameMoveServiceTest {
 		
 		//cardService.saveCard(deck1Card);
 		player1_Deck.getDeckCards().add(card1_deck1_attack);
-		deckService.saveDeck(player1_Deck);
+		deckDao.save(player1_Deck);
 		
 		// create player2
 		Player player2 = new Player();
 		player2.setName("player2");
 		player2.setTagLine("Join the dark side, it's too hot there");
-		playerService.savePLayer(player2);
+		playerDao.save(player2);
 		
 		// create deck 2 with one card 2, one OFFENSE, one DEFENSE
 		Deck player2_Deck = new Deck("player2_Deck");
@@ -96,7 +98,7 @@ public class GameMoveServiceTest {
 		
 		player2_Deck.getDeckCards().add(card1_deck2_attack);
 		player2_Deck.getDeckCards().add(card2_deck2_defense);
-		deckService.saveDeck(player2_Deck);
+		deckDao.save(player2_Deck);
 		
 		
 		// ASSERT : id of player 1 and 2, deck 1 and 2 and cards exist !!!
@@ -113,7 +115,7 @@ public class GameMoveServiceTest {
 		// create game 
 		Game theGame = new Game();
 		theGame.setDateGame(cal.getTime());
-		gameService.saveGame(theGame);
+		gameDao.save(theGame);
 		
 		Assert.assertTrue(theGame.getId() != 0);
 		
@@ -125,50 +127,7 @@ public class GameMoveServiceTest {
 		player1_plays.setGameMovePK(gameMovePk);
 		player1_plays.setGameMoveType(GameMoveType.START_PLAYING);
 		player1_plays.setGameMoveFrom(GameMoveFrom.PLAYER1);
-		gmService.saveGameMove(player1_plays);
-		
-		// create one game move where player 1 applied OFFENSE deck1-card 1 to player 2
-		GameMove player1_offense_card = new GameMove();
-		player1_offense_card.setGameMovePK(GameMovePK.newGameMovePK(gameMovePk));
-		player1_offense_card.setGameMoveType(GameMoveType.PLAY_CARD);
-		player1_offense_card.setGameMoveFrom(GameMoveFrom.PLAYER1);
-		player1_offense_card.setCard(card1_deck1_attack);
-		player1_offense_card.setVitals(20, 20, 20, 15, 15, 17);
-		gmService.saveGameMove(player1_offense_card);
-
-		// create one game move where player 2 starts playing
-		GameMove player2_plays = new GameMove();
-		player2_plays.setGameMovePK(GameMovePK.newGameMovePK(gameMovePk));
-		player2_plays.setGameMoveType(GameMoveType.START_PLAYING);
-		player2_plays.setGameMoveFrom(GameMoveFrom.PLAYER2);
-		gmService.saveGameMove(player2_plays);
-		
-		// create one game move where player 2 applied OFFENSE card on player 1
-		GameMove player2_attack_card = new GameMove();
-		player2_attack_card.setGameMovePK(GameMovePK.newGameMovePK(gameMovePk));
-		player2_attack_card.setGameMoveType(GameMoveType.PLAY_CARD);
-		player2_attack_card.setGameMoveFrom(GameMoveFrom.PLAYER2);
-		player2_attack_card.setCard(card1_deck2_attack);
-		player2_attack_card.setVitals(15, 15, 18, 15, 15, 17);
-		gmService.saveGameMove(player2_attack_card);
-		
-		// create one game move where player 2 applied defense card on himself
-		GameMove player2_defense_card = new GameMove();
-		player2_defense_card.setGameMovePK(GameMovePK.newGameMovePK(gameMovePk));
-		player2_defense_card.setGameMoveType(GameMoveType.PLAY_CARD);
-		player2_defense_card.setGameMoveFrom(GameMoveFrom.PLAYER2);
-		player2_defense_card.setCard(card2_deck2_defense);
-		player2_defense_card.setVitals(15, 15, 18, 15, 15, 17);
-		gmService.saveGameMove(player2_defense_card);
-		
-		// verify everything is saved by retrieving all the game moves !
-		
-		List<GameMove> gmList = gmService.findGameMovesByGameAndDecks(theGame.getId(), player1_Deck.getId(), player2_Deck.getId()) ;
-		
-		System.out.println(gmList.size());
-		// verify it's player 2's turn
-		Assert.assertTrue(gmList.get(0).getGameMoveFrom() == GameMoveFrom.PLAYER2);
-		
+		gmDao.save(player1_plays);
 		
 	}
 }

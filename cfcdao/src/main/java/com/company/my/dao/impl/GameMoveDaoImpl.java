@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.company.my.bom.GameMove;
 import com.company.my.bom.GameMovePK;
 import com.company.my.dao.GameMoveDao;
-import com.company.my.hibernate.util.HibernateDao;
+import com.company.my.hibernate.util.AbstractHibernateDao;
 
 @SuppressWarnings("unchecked")
 @Repository("gameMoveDao")
-public class GameMoveDaoImpl extends HibernateDao implements GameMoveDao {
+public class GameMoveDaoImpl extends AbstractHibernateDao implements GameMoveDao {
 
 	public void save(GameMove gMove) {
 		this.getCurrentSession().save(gMove);

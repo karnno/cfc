@@ -36,10 +36,10 @@ import com.company.my.dao.PlayerDao;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration (locations="/HibernateWithSpringTest-context.xml")// By default look for [class name]-context.xml file
+@ContextConfiguration (locations="/cfcdao-test-context.xml")// By default look for [class name]-context.xml file
 
 @Transactional
-public class HibernateWithSpringTest {
+public class DeckAndCardsTest {
 
 	@Autowired
 	SessionFactory sessionFactory;

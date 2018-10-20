@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.company.my.bom.Player;
 import com.company.my.dao.PlayerDao;
-import com.company.my.hibernate.util.HibernateDao;
+import com.company.my.hibernate.util.AbstractHibernateDao;
 
 @Repository("playerDao")
-public class PlayerDaoImpl extends HibernateDao implements PlayerDao {
+public class PlayerDaoImpl extends AbstractHibernateDao implements PlayerDao {
 
 	
 	public void save(Player player) {
@@ -33,4 +33,12 @@ public class PlayerDaoImpl extends HibernateDao implements PlayerDao {
 		return (Player) crit.uniqueResult();
 	}
 
+	public Player findByNameAndPassword(String name, String password) {
+		Session session = this.getCurrentSession();
+		Criteria crit = session.createCriteria(Player.class);
+		crit.add(Restrictions.eq("player.name", name));
+		crit.add(Restrictions.eq("player.password", password));
+		
+		return (Player) crit.uniqueResult();
+	}
 }

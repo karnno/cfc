@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.company.my.bom.Card;
 import com.company.my.dao.CardDao;
-import com.company.my.hibernate.util.HibernateDao;
+import com.company.my.hibernate.util.AbstractHibernateDao;
 
 @Repository("cardDao")
-public class CardDaoImpl extends HibernateDao implements CardDao {
+public class CardDaoImpl extends AbstractHibernateDao implements CardDao {
 
 	public Long save(Card card) {
 		return (Long) this.getCurrentSession().save(card);

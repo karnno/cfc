@@ -16,7 +16,7 @@ import com.company.my.service.card.CardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/cfcservices-context-test.xml",
-		"/HibernateWithSpringTest-context.xml" })
+		"/cfcdao-test-context.xml" })
 @ActiveProfiles("testProfile")
 public class DeckServiceTest {
 

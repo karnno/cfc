@@ -19,7 +19,7 @@
 		<property name="driverClassName" value="org.h2.Driver" />
 		<property name="url"
 
-				value="jdbc:h2:~/java/tools/h2_databases/cfcDB_embedded;INIT=RUNSCRIPT FROM 'classpath:create_for_test.sql'" />
+				value="jdbc:h2:~/java/tools/h2_databases/cfcDB_embedded;INIT=RUNSCRIPT FROM 'classpath:cfcdao_create_for_test.sql'" />
 <!-- 			value="jdbc:h2:tcp://localhost/~/java/tools/h2_databases/cfcDB" /> -->
 		<property name="username" value="sa" />
 		<property name="password" value="" />
@@ -36,17 +36,11 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-<!-- 		<property name="annotatedClasses"> -->
-<!-- 			<list> -->
-<!-- 				<value>com.company.my.card.Card</value> -->
-<!-- 				<value>com.company.my.deck.Deck</value> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
 		<property name="packagesToScan">
 	        <list>
 	            <value>com.company.my.bom</value>
-	            <value>com.company.my.card</value>
-	            <value>com.company.my.deck</value>
+<!-- 	            <value>com.company.my.card</value> -->
+<!-- 	            <value>com.company.my.deck</value> -->
 	        </list>
 	    </property>
 		<property name="hibernateProperties">
@@ -55,7 +49,7 @@
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop>-->
 				<prop key="hibernate.show_sql">true</prop>
   				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 				<!--
 				So the list of possible options are,
 					validate: validate the schema, makes no changes to the database.

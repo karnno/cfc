@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * See HibernateDao bean declaration in cfc-dao.xml configuration file
  * 
  */
-public abstract class HibernateDao {
+public abstract class AbstractHibernateDao {
 
-	static final Logger LOGGER = LoggerFactory.getLogger(HibernateDao.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(AbstractHibernateDao.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
