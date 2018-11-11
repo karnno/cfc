@@ -13,10 +13,11 @@ public interface GameDao {
 	public List<Game> list();
 	
 	/**
-	 * Returns list of available games 
+	 * Returns the initiated games which don't involve the current player's deck.
+	 * @param playerDeckIds
 	 * @return
 	 */
-	public List<Game> listAllAvailableGames();
+	public List<Game> listAllAvailableGames(List<Long> playerDeckIds);
 	
 	/**
 	 * Searches and returns the game via its Id

@@ -1,5 +1,6 @@
 package com.company.my.service;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,14 @@ public class PlayerService {
 		
 		Player toReturn = this.playerDao.findById(playerId);
 		LOGGER.info("found player with id {}", playerId);
+		Hibernate.initialize(toReturn.getDecks());
 		LOGGER.debug("Found player {} with his {} decks", toReturn.getName(), toReturn.getDecks().size() );
 		
 		if (toReturn.getDecks().size() !=0){
 			LOGGER.debug("parse the decks");
 			
 			for (Deck oneDeck : toReturn.getDecks()){
+				Hibernate.initialize(oneDeck.getDeckCards());
 				LOGGER.debug("deck {} has {} cards", oneDeck.getId(), oneDeck.getDeckCards().size());
 			}
 			
@@ -58,7 +61,11 @@ public class PlayerService {
 	@Transactional
 	public Player findPlayerByUserNameAndPassword(String name, String password) {
 		Player toReturn = this.playerDao.findByNameAndPassword(name, password);
-		
+		if (toReturn == null) {
+			LOGGER.error("Login failed for player with name {} and password {}", name, password);
+		}else {
+			LOGGER.info("Login success for player with name {}", name, password);
+		}
 		return toReturn;
 	}
 	

@@ -28,7 +28,7 @@ public class PlayerDaoImpl extends AbstractHibernateDao implements PlayerDao {
 	public Player findByName(String name) {
 		Session session = this.getCurrentSession();
 		Criteria crit = session.createCriteria(Player.class);
-		crit.add(Restrictions.eq("player.name", name));
+		crit.add(Restrictions.eq("name", name));
 		
 		return (Player) crit.uniqueResult();
 	}
@@ -36,8 +36,8 @@ public class PlayerDaoImpl extends AbstractHibernateDao implements PlayerDao {
 	public Player findByNameAndPassword(String name, String password) {
 		Session session = this.getCurrentSession();
 		Criteria crit = session.createCriteria(Player.class);
-		crit.add(Restrictions.eq("player.name", name));
-		crit.add(Restrictions.eq("player.password", password));
+		crit.add(Restrictions.eq("name", name));
+		crit.add(Restrictions.eq("password", password));
 		
 		return (Player) crit.uniqueResult();
 	}

@@ -1,5 +1,6 @@
 package com.company.my.service.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.company.my.bom.Deck;
 import com.company.my.bom.Game;
+import com.company.my.bom.GameStatus;
 import com.company.my.dao.DeckDao;
 import com.company.my.dao.GameDao;
 import com.company.my.service.exception.CfcBusinessException;
@@ -63,7 +65,37 @@ public class GameService {
 	}
 
 	@Transactional
-	public List<Game> listAllAvailableGames() {
-		return gameDao.list();
+	public List<Game> listAllAvailableGames(long playerId) {
+		// find the decks for the player
+		List<Deck> playerDecks = deckDao.findByPlayerId(playerId);
+		
+		if (0 == playerDecks.size()) {
+			// the current player has no deck ?? 
+			// =  ask to create one !
+			// TODO : throw an exception "no deck for current user"
+			LOGGER.warn("the player id={} does not have any deck !", playerId);
+//			return empty list for now ! 
+			return new ArrayList<Game>();
+		}
+		
+		List<Long> playerDecksId = new ArrayList<Long>();
+		for (Deck deck : playerDecks) {
+			playerDecksId.add(new Long(deck.getId()));
+		}
+		
+		// returns the games which don't involve the previous decks
+		return gameDao.listAllAvailableGames(playerDecksId);
+	}
+
+	@Transactional
+	public void endGame(long gameId, long winnerDeckId) {
+		Game endingGame = gameDao.findById(gameId);
+		
+		endingGame.setGameStatus(GameStatus.FINISHED);
+		endingGame.setWinnerDeckId(winnerDeckId);
+		
+		gameDao.update(endingGame);
+		
+		LOGGER.info("End game {} . Winner is deck {}", gameId, winnerDeckId);
 	}
 }

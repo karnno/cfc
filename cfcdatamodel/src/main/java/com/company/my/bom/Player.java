@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * A user has a tag line:
  * ex:
@@ -53,6 +55,7 @@ public class Player implements Serializable{
 	@Column(name = "TAGLINE")
 	private String tagLine; 
 	
+	//@JsonIgnore
 	@OneToMany(
 			cascade = CascadeType.PERSIST
 			, mappedBy="player"

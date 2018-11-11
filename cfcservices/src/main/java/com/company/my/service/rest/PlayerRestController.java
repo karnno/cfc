@@ -29,13 +29,12 @@ public class PlayerRestController {
 	@RequestMapping(value="byid", method = RequestMethod.GET, headers={"Accept=application/json"} ,produces = "application/json")
 	public Player getPLayerFromId (@RequestParam(name="playerId") Long playerID){
 		Player toReturn = playerService.findPlayerWithDecksAndCardsByPlayerId(1L);
-		LOGGER.info("GET PLAYER WITH ID {}, NAMED {}", playerID, toReturn.getName());
+		LOGGER.info("GET PLAYER WITH ID {}, NAMED {}, {} DECKS", playerID, toReturn.getName(), toReturn.getDecks().size());
 		return toReturn;
 	}
 	
-	@RequestMapping(value="savepersonalinfo", method = RequestMethod.GET, headers={"Accept=application/json"} ,produces = "application/json")
+	@RequestMapping(value="savepersonalinfo", method = RequestMethod.POST, headers={"Accept=application/json"} ,produces = "application/json")
 	public ResponseEntity<String> savePlayerPersonalInfo (@RequestParam(name="playerId")Long playerId, @RequestParam(name="name") String name, @RequestParam(name="tagLine")String tagLine){
-		//playerService.updatePlayerPersonalInfo(playerId, name, tagLine);
 		
 		playerService.updatePlayerPersonalInfo(playerId, name, tagLine);
 		

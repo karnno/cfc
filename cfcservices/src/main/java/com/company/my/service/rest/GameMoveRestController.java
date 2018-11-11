@@ -20,7 +20,7 @@ import com.company.my.service.rest.util.RestServicesUtils;
 import com.company.my.service.wrapper.GameMoveWrapper;
 
 @RestController
-@RequestMapping("/gamemove/")
+@RequestMapping("/gamemove")
 @SuppressWarnings("unused")
 public class GameMoveRestController {
 
@@ -33,9 +33,9 @@ public class GameMoveRestController {
 	 * @param wrapper
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "save", method = RequestMethod.POST, headers={"Accept=application/json"} ,produces = "application/json")
+	@RequestMapping(value = "/save", method = RequestMethod.POST, headers={"Accept=application/json"} ,produces = "application/json")
     public void saveGameMove(GameMoveWrapper wrapper, HttpServletRequest request, HttpServletResponse response) throws Exception{
-		LOGGER.debug(" GameMoveRestController : save game move {}", wrapper.toString());
+		LOGGER.info(" GameMoveRestController : save game move {}", wrapper.toString());
 		
 		GameMove toSave = RestServicesUtils.getGameMoveFromGameMoveWrapper(wrapper);
 		
@@ -53,10 +53,10 @@ public class GameMoveRestController {
 	 * @return List<GameMove>
 	 * @throws Exception
 	 */
-	@RequestMapping(value="findall", method = RequestMethod.GET, headers={"Accept=application/json"} ,produces = "application/json")
+	@RequestMapping(value="/findall", method = RequestMethod.GET, produces = "application/json")
 	public List<GameMove> findAllGameMovesForGameAndDecks(Long gameId, Long deck1Id, Long deck2Id) throws Exception {
 		List<GameMove> toReturn = new ArrayList<GameMove>();
-		LOGGER.debug("GameMoveRestController : find all game moves from game id {}, deck1 id {}, deck2 id {}", gameId, deck1Id, deck2Id);
+		LOGGER.info("GameMoveRestController : find all game moves from game id {}, deck1 id {}, deck2 id {}", gameId, deck1Id, deck2Id);
 		return this.gmService.findGameMovesByGameAndDecks(gameId, deck1Id, deck2Id);
 	}
 	

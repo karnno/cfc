@@ -3,6 +3,8 @@ package com.company.my.service.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +29,7 @@ public class GameRestController {
 	 * @param deck1Id the player's deck ID
 	 * @return the newly instantiated game Id
 	 */
-	@RequestMapping(value="/new" ,produces = "application/json" )
+	@PostMapping(value="/new" , produces = "application/json" )
 	public long newGame(@RequestParam(name="deck1Id") Long deck1Id) {
 		Game created = gameService.createNewGame(deck1Id);
 		LOGGER.info("Created new game with id {}.", created.getId());
@@ -39,9 +41,9 @@ public class GameRestController {
 	/**
 	 * List all available games one user can join
 	 */
-	@RequestMapping(value="/list" ,produces = "application/json" )
-	public void listAllAvailableGames() {
-		gameService.listAllAvailableGames();
+	@GetMapping(value="/list" ,produces = "application/json" )
+	public void listAllAvailableGames(long playerId) {
+		gameService.listAllAvailableGames(playerId);
 	}
 	
 	/**
@@ -51,11 +53,18 @@ public class GameRestController {
 	 * @return the game id 
 	 * @throws CfcBusinessException 
 	 */
-	@RequestMapping(value="/join" ,produces = "application/json" )
+	@PostMapping(value="/join", produces = "application/json" )
 	public long joinGame(long gameId, long deck2Id) throws CfcBusinessException {
 		gameService.joinExistingGame(gameId, deck2Id);
 		LOGGER.info("JOINED game {}.", gameId );
 		return gameId;
 		
+	}
+	
+	@PostMapping(value="/end", produces = "application/json")
+	public long endGame(long gameId, long winnerDeckId) {
+		gameService.endGame(gameId, winnerDeckId);
+		LOGGER.info("ENDED game {}", gameId);
+		return gameId; 
 	}
 }
